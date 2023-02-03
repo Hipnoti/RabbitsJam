@@ -15,3 +15,9 @@ public class GeneralGameSettings : ScriptableObject
     public float timeBetweenHumps;
     
 }
+
+[System.Serializable]
+public class PlayerStyle
+{
+    
+}
