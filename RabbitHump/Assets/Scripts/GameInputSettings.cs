@@ -9,4 +9,5 @@ public class GameInputSettings : ScriptableObject
     public KeyCode downKey;
     public KeyCode leftKey;
     public KeyCode rightKey;
+    public KeyCode useKey;
 }

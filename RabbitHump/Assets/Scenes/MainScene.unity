@@ -1392,9 +1392,9 @@ MonoBehaviour:
   bunnySpawnPoint1: {fileID: 14798788}
   bunnySpawnPoint2: {fileID: 10627364}
   defenseObjectives:
+  - {fileID: 557182042}
   - {fileID: 636000931}
   - {fileID: 810869897}
-  - {fileID: 557182042}
   - {fileID: 1755322570}
 --- !u!1 &719120531
 GameObject:
