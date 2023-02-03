@@ -13,3 +13,6 @@ MonoBehaviour:
   m_Name: General Game Settings
   m_EditorClassIdentifier: 
   basePlayerSpeed: 10
+  distanceToHump: 1.25
+  humpingTime: 5
+  timeBetweenHumps: 6

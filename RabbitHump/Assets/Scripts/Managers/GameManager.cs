@@ -7,7 +7,9 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public GeneralGameSettings generalGameSettings;
     public GameObject playerPrefab;
+    public BunnyController bunnyPrefab;
 
     private void Start()
     {
