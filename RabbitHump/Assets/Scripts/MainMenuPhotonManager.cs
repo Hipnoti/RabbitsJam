@@ -9,6 +9,7 @@ public class MainMenuPhotonManager : PhotonManager
 {
    public Button connectToPhotonButton;
    public TMP_Text connectToPhotonButtonText;
+   
    private void Start()
    {
       onConnectionStarted.AddListener(delegate
