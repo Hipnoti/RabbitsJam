@@ -5,7 +5,7 @@ using Photon.Pun;
 using UnityEngine;
 
 public enum Players {Player1, Player2}
-public class PlayerController : GameEntity
+public class PlayerController : GameEntity, IPunInstantiateMagicCallback
 {
     public Players playerNumber;
     private readonly Vector3 upVector = Vector3.forward;
@@ -18,7 +18,11 @@ public class PlayerController : GameEntity
     [SerializeField] private GeneralGameSettings gameSettings;
     // Start is called before the first frame update
 
-    // Update is called once per frame
+    public void OnPhotonInstantiate(PhotonMessageInfo info)
+    {
+        playerNumber = (Players)info.photonView.InstantiationData[0];
+    }
+    
     void Update()
     {
         if (photonView.IsMine && GameHelper.acceptInput)
@@ -44,4 +48,6 @@ public class PlayerController : GameEntity
       
         }
     }
+
+    
 }
