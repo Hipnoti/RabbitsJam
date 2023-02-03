@@ -1,18 +1,16 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public GameObject playerPrefab;
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        PhotonNetwork.Instantiate("Prefabs/"+playerPrefab.name, Vector3.zero, quaternion.identity);
     }
 }

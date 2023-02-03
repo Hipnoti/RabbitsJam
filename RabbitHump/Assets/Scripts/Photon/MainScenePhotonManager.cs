@@ -11,6 +11,7 @@ public class MainScenePhotonManager : PhotonManager
         if (PhotonNetwork.PhotonServerSettings.StartInOfflineMode)
         {
             PhotonNetwork.ConnectUsingSettings();
+            PhotonNetwork.CreateRoom("Room");
         }
     }
     
