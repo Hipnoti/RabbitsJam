@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 [InitializeOnLoadAttribute]
 public class PlayStatePhotonSettingsAddOn : MonoBehaviour
 {
-    private const string MAIN_SCENE_NAME = "MainScene";
+   
     
     static PlayStatePhotonSettingsAddOn()
     {
@@ -19,7 +19,7 @@ public class PlayStatePhotonSettingsAddOn : MonoBehaviour
     {
         if (state == PlayModeStateChange.ExitingEditMode)
         {
-            if (SceneManager.GetActiveScene().name == MAIN_SCENE_NAME)
+            if (SceneManager.GetActiveScene().name == GameHelper.MAIN_SCENE_NAME)
                 PhotonNetwork.PhotonServerSettings.StartInOfflineMode = true;
             else
                 PhotonNetwork.PhotonServerSettings.StartInOfflineMode = false;

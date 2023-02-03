@@ -11,7 +11,7 @@ public abstract class PhotonManager : MonoBehaviourPunCallbacks
 {
       protected UnityEvent onConnectionStarted = new UnityEvent();
       
-      public void ConnectToGame()
+      public virtual void ConnectToGame()
       {
             onConnectionStarted.Invoke();
             PhotonNetwork.ConnectUsingSettings();
