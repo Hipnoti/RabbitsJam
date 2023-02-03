@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.AI;
@@ -8,6 +9,7 @@ using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 
+public enum BunnyDirectives { Chew, Dig, Hump}
 public class BunnyController : GameEntity
 {
     public bool CanHump
@@ -19,15 +21,17 @@ public class BunnyController : GameEntity
     public GeneralGameSettings gameSettings;
     public NavMeshAgent navMeshAgent;
     public Image actionLoadingImage;
+    public TMP_Text currentDirectiveText;
     public BunnyController targetBunny = null;
+    public ObjectiveEntity targetObjective;
+    public BunnyDirectives currentDirective;
     
     [HideInInspector] public bool goingToHump = false;
     [HideInInspector] public bool humping = false;
+    
      private HumpingRole humpingRole = HumpingRole.None;
-    
-    
 
-    private GameAction currentAction;
+     private GameAction currentAction;
     private float humpCooldown = 2;
 
     public void Shove()
@@ -48,6 +52,7 @@ public class BunnyController : GameEntity
         }
         navMeshAgent.updateRotation = false;
         actionLoadingImage.fillAmount = 0;
+        RecalculateDirective();
     }
 
     private void Update()
@@ -73,6 +78,27 @@ public class BunnyController : GameEntity
             {
                 currentAction.EndAction();
             }
+        }
+    }
+
+    private void RecalculateDirective()
+    {
+        BunnyActionChance chosenActionChance = GameHelper.Choose(gameSettings.bunnyActionChances);
+        currentDirective = chosenActionChance.directive;
+        currentDirectiveText.text = currentDirective.ToString();
+
+        switch (currentDirective)
+        {
+            case BunnyDirectives.Chew:
+                targetObjective = gameManager.GetRandomObjectiveEntity();
+                navMeshAgent.SetDestination(targetObjective.transform.position);
+                break;
+            case BunnyDirectives.Dig:
+                break;
+            case BunnyDirectives.Hump:
+                break;
+            default:
+                break;
         }
     }
 
@@ -104,6 +130,7 @@ public class BunnyController : GameEntity
     {
         humping = true;
         goingToHump = false;
+        
         currentAction = new GameAction(gameSettings.humpingTime);
         currentAction.onActionEnded.AddListener(EndHumpState);
         currentAction.StartAction();

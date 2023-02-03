@@ -106,6 +106,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6114730794766108453}
+  - component: {fileID: 1898121942637110304}
+  - component: {fileID: 8291944625560008740}
+  - component: {fileID: 7394984425511147029}
   - component: {fileID: 3251695489731062167}
   - component: {fileID: 9187037496767531027}
   - component: {fileID: 8032375755004024736}
@@ -136,6 +139,64 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1898121942637110304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4611988719960686494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents:
+  - {fileID: 8291944625560008740}
+  - {fileID: 7394984425511147029}
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &8291944625560008740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4611988719960686494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowLayerWeightsInspector: 1
+  ShowParameterInspector: 1
+  m_SynchronizeParameters: []
+  m_SynchronizeLayers:
+  - SynchronizeType: 0
+    LayerIndex: 0
+--- !u!114 &7394984425511147029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4611988719960686494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
 --- !u!114 &3251695489731062167
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -153,6 +214,10 @@ MonoBehaviour:
   gameSettings: {fileID: 11400000, guid: c9c01f2c6ae071340b02a9d08570cfa3, type: 2}
   navMeshAgent: {fileID: 8032375755004024736}
   actionLoadingImage: {fileID: 2487801586817556693}
+  currentDirectiveText: {fileID: 3233951071105470376}
+  targetBunny: {fileID: 0}
+  targetObjective: {fileID: 0}
+  currentDirective: 0
   goingToHump: 0
   humping: 0
 --- !u!95 &9187037496767531027
@@ -383,18 +448,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4878734432961887983, guid: e81ffcb6e4b55ea4ebadd07301e7b279,
-        type: 3}
-      propertyPath: m_PresetInfoIsWorld
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7915068155842379864, guid: e81ffcb6e4b55ea4ebadd07301e7b279,
         type: 3}
       propertyPath: m_Name
       value: Action Canvas
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 2221048697201004873, guid: e81ffcb6e4b55ea4ebadd07301e7b279, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e81ffcb6e4b55ea4ebadd07301e7b279, type: 3}
 --- !u!114 &2487801586817556693 stripped
 MonoBehaviour:
@@ -406,6 +465,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3233951071105470376 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6233877669996137452, guid: e81ffcb6e4b55ea4ebadd07301e7b279,
+    type: 3}
+  m_PrefabInstance: {fileID: 8818720882175263812}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!224 &4972786501827841878 stripped

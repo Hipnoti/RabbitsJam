@@ -4,8 +4,10 @@ using System.Collections.Generic;
 using Photon.Pun;
 using UnityEngine;
 
+public enum Players {Player1, Player2}
 public class PlayerController : GameEntity
 {
+    public Players playerNumber;
     private readonly Vector3 upVector = Vector3.forward;
     private readonly Vector3 downVector = Vector3.back;
     private readonly Vector3 leftVector = Vector3.left;

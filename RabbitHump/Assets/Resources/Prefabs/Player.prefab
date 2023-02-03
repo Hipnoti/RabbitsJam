@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 2801193867269699418}
   - component: {fileID: 5899702627974531633}
   - component: {fileID: 585245521278188947}
+  - component: {fileID: 5788762480515754892}
   - component: {fileID: 6906298017686966256}
   - component: {fileID: 6642077197256010769}
   m_Layer: 0
@@ -163,6 +164,7 @@ MonoBehaviour:
   observableSearch: 2
   ObservedComponents:
   - {fileID: 5899702627974531633}
+  - {fileID: 5788762480515754892}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -195,8 +197,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   entityAnimator: {fileID: 4563759431011478472}
+  playerNumber: 0
   inputSettings: {fileID: 11400000, guid: 444930ba16c912f45934c6d8ace79621, type: 2}
   gameSettings: {fileID: 11400000, guid: c9c01f2c6ae071340b02a9d08570cfa3, type: 2}
+--- !u!114 &5788762480515754892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3443285657875544016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowLayerWeightsInspector: 0
+  ShowParameterInspector: 0
+  m_SynchronizeParameters: []
+  m_SynchronizeLayers:
+  - SynchronizeType: 0
+    LayerIndex: 0
+  - SynchronizeType: 0
+    LayerIndex: 1
 --- !u!136 &6906298017686966256
 CapsuleCollider:
   m_ObjectHideFlags: 0

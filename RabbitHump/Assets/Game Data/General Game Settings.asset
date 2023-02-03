@@ -16,3 +16,8 @@ MonoBehaviour:
   distanceToHump: 1.25
   humpingTime: 10
   timeBetweenHumps: 6
+  bunnyActionChances:
+  - directive: 0
+    chance: 0.5
+  - directive: 1
+    chance: 0.5

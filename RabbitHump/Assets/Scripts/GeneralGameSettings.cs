@@ -13,11 +13,14 @@ public class GeneralGameSettings : ScriptableObject
     public float distanceToHump;
     public float humpingTime;
     public float timeBetweenHumps;
-    
+    public List<BunnyActionChance> bunnyActionChances;
+
+
 }
 
 [System.Serializable]
-public class PlayerStyle
+public class BunnyActionChance
 {
-    
+    public BunnyDirectives directive;
+    public float chance = 0.5f;
 }
