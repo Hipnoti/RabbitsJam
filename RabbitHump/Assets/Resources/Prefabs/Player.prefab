@@ -107,6 +107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bab1e54e86686b4f9e1a5eb5c3e0a92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  entityAnimator: {fileID: 0}
   inputSettings: {fileID: 11400000, guid: 444930ba16c912f45934c6d8ace79621, type: 2}
   gameSettings: {fileID: 11400000, guid: c9c01f2c6ae071340b02a9d08570cfa3, type: 2}
 --- !u!1 &3819524632763021307

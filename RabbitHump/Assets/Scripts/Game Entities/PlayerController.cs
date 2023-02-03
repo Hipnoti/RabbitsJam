@@ -1,9 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : GameEntity
 {
     private readonly Vector3 upVector = Vector3.forward;
     private readonly Vector3 downVector = Vector3.back;
@@ -18,7 +19,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameHelper.acceptInput)
+        if (photonView.IsMine && GameHelper.acceptInput)
         {
             Vector3 moveVector = Vector3.zero;
             moveVector += Input.GetKey(inputSettings.upKey) ? upVector : zeroVector;
