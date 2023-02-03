@@ -7,7 +7,7 @@ using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine.Events;
 
-public class PhotonManager : MonoBehaviourPunCallbacks
+public abstract class PhotonManager : MonoBehaviourPunCallbacks
 {
       protected UnityEvent onConnectionStarted = new UnityEvent();
       
