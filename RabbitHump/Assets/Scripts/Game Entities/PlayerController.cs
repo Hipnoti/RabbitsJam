@@ -29,4 +29,17 @@ public class PlayerController : GameEntity
             transform.Translate(moveVector * (Time.deltaTime * gameSettings.basePlayerSpeed));
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Bunny Human Interaction"))
+        {
+            Debug.Log(("Stop it bunny!"));
+            BunnyController bunnyController = other.GetComponentInParent<BunnyController>();
+            if(bunnyController.humping)
+                bunnyController.targetBunny.Shove();
+            bunnyController.Shove();
+      
+        }
+    }
 }

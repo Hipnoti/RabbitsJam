@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   basePlayerSpeed: 10
   distanceToHump: 1.25
-  humpingTime: 5
+  humpingTime: 10
   timeBetweenHumps: 6

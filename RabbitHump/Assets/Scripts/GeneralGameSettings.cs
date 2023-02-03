@@ -13,4 +13,5 @@ public class GeneralGameSettings : ScriptableObject
     public float distanceToHump;
     public float humpingTime;
     public float timeBetweenHumps;
+    
 }

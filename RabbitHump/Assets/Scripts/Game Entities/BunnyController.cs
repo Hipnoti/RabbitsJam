@@ -19,15 +19,26 @@ public class BunnyController : GameEntity
     public GeneralGameSettings gameSettings;
     public NavMeshAgent navMeshAgent;
     public Image actionLoadingImage;
+    public BunnyController targetBunny = null;
     
     [HideInInspector] public bool goingToHump = false;
     [HideInInspector] public bool humping = false;
      private HumpingRole humpingRole = HumpingRole.None;
     
-    private BunnyController targetBunny = null;
+    
 
     private GameAction currentAction;
-    private float humpCooldown = 5;
+    private float humpCooldown = 2;
+
+    public void Shove()
+    {
+        actionLoadingImage.fillAmount = 0;
+        humpCooldown = gameManager.generalGameSettings.timeBetweenHumps;
+        humping = false;
+        targetBunny = null;
+        humpingRole = HumpingRole.None;
+        
+    }
     
     private void Start()
     {
