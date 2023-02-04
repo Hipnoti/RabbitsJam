@@ -1,24 +1,9 @@
 fileFormatVersion: 2
-guid: 2faf8d47d54ab214bac0f1bf28fed468
+guid: f25fa0163634cc24f90aa734aa13cc59
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Carton
-    second: {fileID: 2100000, guid: c752ff8cdd6b9464cabc7a5ffb26ed28, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: MT_RabbitChewing
-    second: {fileID: 2100000, guid: 7ee15e4f263aae248a6c9246761eb235, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: MT_RabbitJaw
-    second: {fileID: 2100000, guid: e768335ec1f11114da2b126056d1b203, type: 2}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -50,7 +35,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 1.2
+    globalScale: 50
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -103,7 +88,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 1.2
+    globalScale: 0.5
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
