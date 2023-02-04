@@ -8,6 +8,7 @@ public class GameEntity : MonoBehaviourPun
 {
     public Animator entityAnimator;
     public GameManager gameManager;
+    public Outline outlineComp; 
     
     private void OnValidate()
     {
