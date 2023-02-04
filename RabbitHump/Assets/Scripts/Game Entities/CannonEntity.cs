@@ -5,6 +5,12 @@ using UnityEngine;
 
 public class CannonEntity : GameEntity
 {
+    private const string ANIMATOR_STATE_PARAMETER_NAME = "Current State";
+    private const int IDLE_ANIM = 1;
+    private const int WALK_ANIM = 2;
+    private const int FIX_ANIM = 3;
+    private const int HOLD_ANIM = 4;
+    
     public ParticleSystem conffetiParticle;
     public BunnyController bunnyPrefab;
     public Transform bunnySpawnPoint;
