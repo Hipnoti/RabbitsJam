@@ -50,10 +50,10 @@ public class PlayerController : GameEntity, IPunInstantiateMagicCallback
         if (photonView.IsMine && GameHelper.acceptInput)
         {
             Vector3 moveVector = Vector3.zero;
-            moveVector += Input.GetKey(inputSettings.upKey) ? upVector : zeroVector;
-            moveVector += Input.GetKey(inputSettings.downKey) ? downVector : zeroVector;
-            moveVector += Input.GetKey(inputSettings.leftKey) ? leftVector : zeroVector;
-            moveVector += Input.GetKey(inputSettings.rightKey) ? rightVector : zeroVector;
+            moveVector += Input.GetKey(playerNumber == Players.Player1 ? inputSettings.playerOneUpKey : inputSettings.playerTwoUpKey) ? upVector : zeroVector;
+            moveVector += Input.GetKey(playerNumber == Players.Player1 ?inputSettings.playerOneDownKey : inputSettings.playerTwoDownKey) ? downVector : zeroVector;
+            moveVector += Input.GetKey(playerNumber == Players.Player1 ?inputSettings.playerOneLeftKey : inputSettings.playerTwoLeftKey) ? leftVector : zeroVector;
+            moveVector += Input.GetKey(playerNumber == Players.Player1 ?inputSettings.playerOneRightKey : inputSettings.playerTwoRightKey) ? rightVector : zeroVector;
 
             if (carriedBunny == null)
             {
@@ -77,7 +77,7 @@ public class PlayerController : GameEntity, IPunInstantiateMagicCallback
                     gameSettings.useDistance)
                 {
                     gameManager.cannon.ToggleOutline(true);
-                    if (Input.GetKeyDown(inputSettings.useKey))
+                    if (Input.GetKeyDown(inputSettings.playerOneUseKey))
                     {
                         carriedBunny = null;
                         entityAnimator.SetInteger(ANIMATOR_STATE_PARAMETER_NAME, IDLE_ANIM);
@@ -95,7 +95,9 @@ public class PlayerController : GameEntity, IPunInstantiateMagicCallback
                 bunnyInRange = newBunnyInRange;
                 if(bunnyInRange != null)
                     bunnyInRange.ToggleOutline(true);
-                if (Input.GetKeyDown(inputSettings.useKey))
+                if (Input.GetKeyDown(playerNumber == Players.Player1 ? 
+                        inputSettings.playerOneUseKey : inputSettings.playerTwoUseKey) || 
+                    Input.GetKeyDown(playerNumber == Players.Player1 ? inputSettings.playerOneAlternativeUseKey : inputSettings.playerTwoAlternativeUseKey ))
                 {
                   
                   

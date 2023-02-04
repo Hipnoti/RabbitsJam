@@ -20,7 +20,7 @@ MonoBehaviour:
   bunnyActionChances:
   - directive: 1
     chance: 0.5
-  - directive: 2
-    chance: 0.5
+  - directive: 3
+    chance: 0
   digTime: 4
   spawnTime: 3

@@ -20,9 +20,10 @@ public class GameManager : MonoBehaviourPun
     public Transform centerPoint;
     
     public List<ObjectiveEntity> defenseObjectives;
-
     public List<BunnyController> bunniesInGame;
 
+    public Transform firstSpawnPointLocation;
+    
     public ObjectiveEntity GetRandomObjectiveEntity()
     {
         return defenseObjectives[UnityEngine.Random.Range(0, defenseObjectives.Count)];
@@ -39,7 +40,7 @@ public class GameManager : MonoBehaviourPun
     {
         PhotonNetwork.Instantiate("Prefabs/" + spawnPointPrefab.name, point, quaternion.identity);
     }
-
+    
     public BunnyController GetClosestBunny(Vector3 fromPosition, float maxDistance)
     {
         BunnyController closestBunny = null;
@@ -61,7 +62,16 @@ public class GameManager : MonoBehaviourPun
     public void InstantiatePlayer()
     {
         PhotonNetwork.Instantiate("Prefabs/" + playerPrefab.name, Vector3.zero, quaternion.identity,
-            0, new object[]{PhotonNetwork.IsMasterClient ? Players.Player1 : Players.Player2});
+            0, new object[]{Players.Player1 });
+        
+        PhotonNetwork.Instantiate("Prefabs/" + playerPrefab.name, Vector3.zero, quaternion.identity,
+            0, new object[]{Players.Player2 });
+    }
+
+    [PunRPC]
+    public void StartGame()
+    {
+        SpawnSpawnPoint(firstSpawnPointLocation.position);
     }
     
     private void Start()

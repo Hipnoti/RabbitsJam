@@ -23,6 +23,7 @@ public class MainScenePhotonManager : PhotonManager
                 RoomOptions roomOptions = new RoomOptions { MaxPlayers = 2, PlayerTtl = 0, EmptyRoomTtl = 0, IsVisible = true };
                 PhotonNetwork.JoinOrCreateRoom(DEFAULT_ROOM_NAME, roomOptions, TypedLobby.Default);
                 gameManager.photonView.RPC("InstantiatePlayer", RpcTarget.AllViaServer);
+                gameManager.StartGame();
             }
     //    }
     }
@@ -40,17 +41,20 @@ public class MainScenePhotonManager : PhotonManager
         base.OnPlayerEnteredRoom(newPlayer);
         Debug.Log(newPlayer.NickName + " Has joined");
         if (PhotonNetwork.IsMasterClient)
+        {
             gameManager.photonView.RPC("InstantiatePlayer", RpcTarget.AllViaServer);
+            gameManager.photonView.RPC("StartGame", RpcTarget.AllViaServer);
+        }
     }
     
     public override void OnCreatedRoom()
     {
         base.OnCreatedRoom();
         Debug.Log(("Room Created"));
-        if (PhotonNetwork.PhotonServerSettings.StartInOfflineMode)
-        {
-            gameManager.photonView.RPC("InstantiatePlayer", RpcTarget.AllViaServer);
-        }
+        // if (PhotonNetwork.PhotonServerSettings.StartInOfflineMode)
+        // {
+        //     gameManager.photonView.RPC("InstantiatePlayer", RpcTarget.AllViaServer);
+        // }
     }
     
     public override void OnJoinedRoom()

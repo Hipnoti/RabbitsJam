@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
@@ -254,7 +255,11 @@ public class BunnyController : GameEntity
         targetBunny = null;
         if (humpingRole == HumpingRole.Active)
         {
-            BunnyController instadBunny = Instantiate(gameManager.bunnyPrefab, transform.position, quaternion.identity);
+            if (PhotonNetwork.IsMasterClient)
+            {
+                PhotonNetwork.Instantiate("Prefabs/" +gameManager.bunnyPrefab.name, transform.position,
+                    quaternion.identity);
+            }
         }
 
         humpingRole = HumpingRole.None;
@@ -273,7 +278,11 @@ public class BunnyController : GameEntity
 
     void EndChewState(GameAction gameAction)
     {
-        gameManager.DestroyObjectiveEntity(targetObjective);
+        if (PhotonNetwork.IsMasterClient)
+        {
+            gameManager.DestroyObjectiveEntity(targetObjective);
+        }
+
         RecalculateDirective();
         actionLoadingImage.fillAmount = 0;
       

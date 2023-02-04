@@ -12,8 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83efaf97c23b5814f9aeb97f84752f2d, type: 3}
   m_Name: Game Input Settings
   m_EditorClassIdentifier: 
-  upKey: 273
-  downKey: 274
-  leftKey: 276
-  rightKey: 275
-  useKey: 32
+  playerOneUpKey: 273
+  playerOneDownKey: 274
+  playerOneLeftKey: 276
+  playerOneRightKey: 275
+  playerOneUseKey: 13
+  playerOneAlternativeUseKey: 271
+  playerTwoUpKey: 119
+  playerTwoDownKey: 115
+  playerTwoLeftKey: 97
+  playerTwoRightKey: 100
+  playerTwoUseKey: 101
+  playerTwoAlternativeUseKey: 0
