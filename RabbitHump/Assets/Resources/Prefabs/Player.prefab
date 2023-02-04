@@ -84,6 +84,64 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &1976138757556505940
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5018860659177314879}
+  - component: {fileID: 5698761030450984442}
+  - component: {fileID: 1232327094654589728}
+  m_Layer: 3
+  m_Name: Use Trigger Area
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5018860659177314879
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1976138757556505940}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -1.6799, z: 0}
+  m_LocalScale: {x: 2.6967337, y: 2.6967337, z: 2.6967337}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5149858732211694474}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &5698761030450984442
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1976138757556505940}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0.99, z: 0}
+--- !u!114 &1232327094654589728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1976138757556505940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cc86a99f751e2040868bb6bd70844b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3443285657875544016
 GameObject:
   m_ObjectHideFlags: 0
@@ -121,6 +179,7 @@ Transform:
   m_Children:
   - {fileID: 2355029918854891917}
   - {fileID: 8156870018896986066}
+  - {fileID: 5018860659177314879}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -199,6 +258,7 @@ MonoBehaviour:
   entityAnimator: {fileID: 4563759431011478472}
   gameManager: {fileID: 0}
   playerNumber: 0
+  carriedBunny: {fileID: 0}
   inputSettings: {fileID: 11400000, guid: 444930ba16c912f45934c6d8ace79621, type: 2}
   gameSettings: {fileID: 11400000, guid: c9c01f2c6ae071340b02a9d08570cfa3, type: 2}
 --- !u!114 &5788762480515754892

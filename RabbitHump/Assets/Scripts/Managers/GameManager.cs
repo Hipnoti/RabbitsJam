@@ -36,6 +36,11 @@ public class GameManager : MonoBehaviour
     {
         PhotonNetwork.Instantiate("Prefabs/" + spawnPointPrefab.name, point, quaternion.identity);
     }
+
+    public BunnyController GetClosestBunny(Vector3 fromPosition, float maxDistance)
+    {
+        
+    }
     
     private void Start()
     {

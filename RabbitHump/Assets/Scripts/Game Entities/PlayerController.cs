@@ -7,13 +7,15 @@ using UnityEngine;
 public enum Players {Player1, Player2}
 public class PlayerController : GameEntity, IPunInstantiateMagicCallback
 {
-    public Players playerNumber;
     private readonly Vector3 upVector = Vector3.forward;
     private readonly Vector3 downVector = Vector3.back;
     private readonly Vector3 leftVector = Vector3.left;
     private readonly Vector3 rightVector = Vector3.right;
     private readonly Vector3 zeroVector = Vector3.zero;
     
+    public Players playerNumber;
+    public BunnyController carriedBunny;
+    public BunnyController bunnyInRange;
     [SerializeField] private GameInputSettings inputSettings;
     [SerializeField] private GeneralGameSettings gameSettings;
     // Start is called before the first frame update
@@ -45,6 +47,14 @@ public class PlayerController : GameEntity, IPunInstantiateMagicCallback
             Vector3 v = transform.position - gameManager.centerPoint.position;
             v = Vector3.ClampMagnitude(v, 4.5f);
             transform.position = gameManager.centerPoint.position + v;
+
+            if (Input.GetKeyDown(inputSettings.useKey))
+            {
+                if (bunnyInRange != null)
+                {
+                    
+                }
+            }
         }
     }
 

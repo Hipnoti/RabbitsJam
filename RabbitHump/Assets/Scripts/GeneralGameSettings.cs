@@ -18,8 +18,6 @@ public class GeneralGameSettings : ScriptableObject
 
     [Header("Spawn")]
     public float spawnTime;
-
-
 }
 
 [System.Serializable]

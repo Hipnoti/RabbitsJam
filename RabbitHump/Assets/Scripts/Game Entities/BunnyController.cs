@@ -99,7 +99,7 @@ public class BunnyController : GameEntity
             if (Vector3.Distance(targetDigPosition, transform.position) <= 0.05f)
             {
                 EnterDigState();
-               
+                
                 Debug.Log(("Digging"));
             }
         }
