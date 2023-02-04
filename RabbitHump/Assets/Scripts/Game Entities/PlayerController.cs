@@ -67,12 +67,13 @@ public class PlayerController : GameEntity, IPunInstantiateMagicCallback
             Vector3 v = transform.position - gameManager.centerPoint.position;
             v = Vector3.ClampMagnitude(v, 4.5f);
             transform.position = gameManager.centerPoint.position + v;
-
+           
             if (carriedBunny != null)
             {
                 if (Vector3.Distance(transform.position, gameManager.cannon.transform.position) <=
                     gameSettings.useDistance)
                 {
+                    gameManager.cannon.ToggleOutline(true);
                     if (Input.GetKeyDown(inputSettings.useKey))
                     {
                         carriedBunny = null;
@@ -83,14 +84,24 @@ public class PlayerController : GameEntity, IPunInstantiateMagicCallback
             }
             else
             {
+                if (gameManager.cannon.outlineComps[0].enabled)
+                    gameManager.cannon.ToggleOutline(false);
+                BunnyController newBunnyInRange = gameManager.GetClosestBunny(transform.position, gameSettings.useDistance);
+                if (bunnyInRange != null && newBunnyInRange != bunnyInRange)
+                    bunnyInRange.ToggleOutline(false);
+                bunnyInRange = newBunnyInRange;
+                if(bunnyInRange != null)
+                    bunnyInRange.ToggleOutline(true);
                 if (Input.GetKeyDown(inputSettings.useKey))
                 {
-                    bunnyInRange = gameManager.GetClosestBunny(transform.position, gameSettings.useDistance);
+                  
+                  
                     if (bunnyInRange != null && carriedBunny == null)
                     {
                         carriedBunny = bunnyInRange;
                         carriedBunny.gameObject.SetActive(false);
                         entityAnimator.SetInteger(ANIMATOR_STATE_PARAMETER_NAME, HOLD_ANIM);
+                       
                     }
                 }
             }

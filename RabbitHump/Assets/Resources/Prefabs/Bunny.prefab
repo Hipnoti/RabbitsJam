@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2566413364138374449}
   - component: {fileID: 7355262970054459428}
   - component: {fileID: 4730879581298454801}
+  - component: {fileID: 6642160081909488359}
   m_Layer: 0
   m_Name: BunnyMesh
   m_TagString: Untagged
@@ -97,6 +98,24 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.1801128, y: 1.4430188, z: 1}
   m_Center: {x: 0.031100985, y: 0.68099, z: 0}
+--- !u!114 &6642160081909488359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3337147545314185409}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0.25352192, g: 1, b: 0, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &4611988719960686494
 GameObject:
   m_ObjectHideFlags: 0
@@ -212,6 +231,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entityAnimator: {fileID: 9187037496767531027}
   gameManager: {fileID: 0}
+  outlineComps:
+  - {fileID: 6642160081909488359}
   gameSettings: {fileID: 11400000, guid: c9c01f2c6ae071340b02a9d08570cfa3, type: 2}
   navMeshAgent: {fileID: 8032375755004024736}
   actionLoadingImage: {fileID: 2487801586817556693}

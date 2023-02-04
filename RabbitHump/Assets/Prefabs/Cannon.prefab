@@ -40,10 +40,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4163039944891106514}
-  - component: {fileID: 1038586935434546039}
-  - component: {fileID: 2994113207408328637}
   - component: {fileID: 3714212285211784447}
   - component: {fileID: 1000334841}
+  - component: {fileID: 343328910835368353}
   m_Layer: 0
   m_Name: Cannon
   m_TagString: Cannon
@@ -65,24 +64,111 @@ Transform:
   m_Children:
   - {fileID: 5927007784123779759}
   - {fileID: 6924480184942749930}
+  - {fileID: 4995157501935338240}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -16.824, z: 0}
---- !u!33 &1038586935434546039
+--- !u!65 &3714212285211784447
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3642785829871378024}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 87.95771, y: 84.56259, z: 58.784973}
+  m_Center: {x: 0, y: 42.281296, z: 0}
+--- !u!114 &1000334841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3642785829871378024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa2d95aa19e65234e938864a5445a259, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entityAnimator: {fileID: 0}
+  gameManager: {fileID: 0}
+  outlineComps:
+  - {fileID: 343328910835368353}
+  - {fileID: 6168649337503205560}
+  conffetiParticle: {fileID: 7062123812737849886}
+  bunnyPrefab: {fileID: 3251695489731062167, guid: d517698f48a9a6546923bbfdd011293f,
+    type: 3}
+  bunnySpawnPoint: {fileID: 6924480184942749930}
+--- !u!114 &343328910835368353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3642785829871378024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0.22352941, g: 1, b: 0, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+--- !u!1 &5279584394144392492
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4995157501935338240}
+  - component: {fileID: 4629297111415182701}
+  - component: {fileID: 2449756606625450185}
+  - component: {fileID: 6168649337503205560}
+  m_Layer: 0
+  m_Name: Graphics
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4995157501935338240
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5279584394144392492}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4163039944891106514}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &4629297111415182701
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3642785829871378024}
+  m_GameObject: {fileID: 5279584394144392492}
   m_Mesh: {fileID: 3861478300804232965, guid: fdf90fde0874f374cad7b477d5345102, type: 3}
---- !u!23 &2994113207408328637
+--- !u!23 &2449756606625450185
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3642785829871378024}
+  m_GameObject: {fileID: 5279584394144392492}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -118,37 +204,24 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &3714212285211784447
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3642785829871378024}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 87.95771, y: 84.56259, z: 58.784973}
-  m_Center: {x: 0, y: 42.281296, z: 0}
---- !u!114 &1000334841
+--- !u!114 &6168649337503205560
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3642785829871378024}
+  m_GameObject: {fileID: 5279584394144392492}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa2d95aa19e65234e938864a5445a259, type: 3}
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entityAnimator: {fileID: 0}
-  gameManager: {fileID: 0}
-  conffetiParticle: {fileID: 7062123812737849886}
-  bunnyPrefab: {fileID: 3251695489731062167, guid: d517698f48a9a6546923bbfdd011293f,
-    type: 3}
-  bunnySpawnPoint: {fileID: 6924480184942749930}
+  outlineMode: 0
+  outlineColor: {r: 0.25352192, g: 1, b: 0, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1001 &1880389908392350143
 PrefabInstance:
   m_ObjectHideFlags: 0
