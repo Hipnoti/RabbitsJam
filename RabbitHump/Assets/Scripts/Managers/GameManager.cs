@@ -19,7 +19,9 @@ public class GameManager : MonoBehaviour
     public Transform centerPoint;
     
     public List<ObjectiveEntity> defenseObjectives;
-    
+
+    public List<BunnyController> bunniesInGame;
+
     public ObjectiveEntity GetRandomObjectiveEntity()
     {
         return defenseObjectives[UnityEngine.Random.Range(0, defenseObjectives.Count)];
@@ -39,7 +41,13 @@ public class GameManager : MonoBehaviour
 
     public BunnyController GetClosestBunny(Vector3 fromPosition, float maxDistance)
     {
-        
+        BunnyController closestBunny = null;
+
+        // for (int i = 0; i < ; i++)
+        // {
+        //     
+        // }
+        return closestBunny;
     }
     
     private void Start()
