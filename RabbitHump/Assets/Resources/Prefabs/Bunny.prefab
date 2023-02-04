@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2566413364138374449}
   - component: {fileID: 7355262970054459428}
   - component: {fileID: 4730879581298454801}
+  - component: {fileID: 6642160081909488359}
   m_Layer: 0
   m_Name: BunnyMesh
   m_TagString: Untagged
@@ -301,6 +302,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entityAnimator: {fileID: 9187037496767531027}
   gameManager: {fileID: 0}
+  outlineComps:
+  - {fileID: 6642160081909488359}
   gameSettings: {fileID: 11400000, guid: c9c01f2c6ae071340b02a9d08570cfa3, type: 2}
   navMeshAgent: {fileID: 8032375755004024736}
   actionLoadingImage: {fileID: 2487801586817556693}

@@ -234,6 +234,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entityAnimator: {fileID: 8087300469650821882}
   gameManager: {fileID: 0}
+  outlineComps: []
   playerNumber: 0
   carriedBunny: {fileID: 0}
   bunnyInRange: {fileID: 0}

@@ -22,6 +22,8 @@ public class CannonEntity : GameEntity
         Rigidbody rb = instadBunny.GetComponent<Rigidbody>();
         rb.isKinematic = false;        
         rb.AddForce(bunnySpawnPoint.forward * 1500f);
-      //  rb.AddTorque(instadBunny.transform.forward * 500f);
+
+        ToggleOutline(false);
+        //  rb.AddTorque(instadBunny.transform.forward * 500f);
     }
 }
