@@ -63,6 +63,7 @@ public class BunnyController : GameEntity
         actionLoadingImage.fillAmount = 0;
         if (humping)
         {
+            Debug.Log("Resseting cooldown");
             humpCooldown = gameManager.generalGameSettings.timeBetweenHumps;
         }
         humping = false;
@@ -207,6 +208,7 @@ public class BunnyController : GameEntity
             Vector3 targetPosition = (transform.position + other.transform.position) / 2;
             navMeshAgent.SetDestination(targetPosition);
             goingToHump = true;
+            Debug.Log("going to hump!!!", gameObject);
         }
 
 
