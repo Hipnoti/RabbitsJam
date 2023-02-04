@@ -217,9 +217,11 @@ MonoBehaviour:
   currentDirectiveText: {fileID: 3233951071105470376}
   targetBunny: {fileID: 0}
   targetObjective: {fileID: 0}
+  targetDigPosition: {x: 0, y: 0, z: 0}
   currentDirective: 0
   goingToHump: 0
   humping: 0
+  onWayToDig: 0
 --- !u!95 &9187037496767531027
 Animator:
   serializedVersion: 5
@@ -273,7 +275,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.58
+  m_Radius: 0.8
   m_Center: {x: 0, y: 0.39, z: 0}
 --- !u!54 &-7625702187066918735
 Rigidbody:

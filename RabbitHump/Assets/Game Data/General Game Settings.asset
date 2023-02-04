@@ -17,8 +17,9 @@ MonoBehaviour:
   humpingTime: 5
   timeBetweenHumps: 6
   bunnyActionChances:
-  - directive: 0
-    chance: 0.5
   - directive: 1
     chance: 0
+  - directive: 2
+    chance: 1
+  digTime: 4
   spawnTime: 3

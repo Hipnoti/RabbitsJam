@@ -14,6 +14,7 @@ public class GeneralGameSettings : ScriptableObject
     public float humpingTime;
     public float timeBetweenHumps;
     public List<BunnyActionChance> bunnyActionChances;
+    public float digTime;
 
     [Header("Spawn")]
     public float spawnTime;

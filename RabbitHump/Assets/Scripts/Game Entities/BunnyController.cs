@@ -11,6 +11,7 @@ using Random = UnityEngine.Random;
 
 public enum BunnyDirectives
 {
+    None,
     Chew,
     Dig,
     Hump
@@ -30,15 +31,19 @@ public class BunnyController : GameEntity
     public TMP_Text currentDirectiveText;
     public BunnyController targetBunny = null;
     public ObjectiveEntity targetObjective;
+    public Vector3 targetDigPosition;
     public BunnyDirectives currentDirective;
 
     [HideInInspector] public bool goingToHump = false;
     [HideInInspector] public bool humping = false;
+    [HideInInspector] public bool onWayToDig = false;
 
     private HumpingRole humpingRole = HumpingRole.None;
 
     private GameAction currentAction;
     private float humpCooldown = 2f;
+
+    
 
     public void Shove()
     {
@@ -71,7 +76,7 @@ public class BunnyController : GameEntity
     private void Update()
     {
         humpCooldown -= Time.deltaTime;
-        if (goingToHump)
+        if (goingToHump && targetBunny != null)
         {
             if (Vector3.Distance(targetBunny.transform.position, transform.position) <= gameSettings.distanceToHump)
             {
@@ -88,6 +93,17 @@ public class BunnyController : GameEntity
                 RecalculateDirective();
             }
         }
+
+        if (currentDirective == BunnyDirectives.Dig && onWayToDig)
+        {
+            if (Vector3.Distance(targetDigPosition, transform.position) <= 0.05f)
+            {
+                EnterDigState();
+               
+                Debug.Log(("Digging"));
+            }
+        }
+        
         if (currentAction != null && currentAction.ActionStarted)
         {
             currentAction.timeLeftForAction -= Time.deltaTime;
@@ -127,6 +143,18 @@ public class BunnyController : GameEntity
                 navMeshAgent.SetDestination(targetObjective.transform.position);
                 break;
             case BunnyDirectives.Dig:
+                for (int i = 0; i < 30; i++)
+                {
+                    Vector3 result = Vector3.zero;
+                    Vector3 randomPoint = gameManager.centerPoint.position + Random.insideUnitSphere * 4.5f;
+                    NavMeshHit hit;
+                    onWayToDig = true;
+                    if (NavMesh.SamplePosition(randomPoint, out hit, 1.0f, NavMesh.AllAreas)) {
+                        result = hit.position;
+                        targetDigPosition = result;
+                        navMeshAgent.SetDestination(result);
+                    }
+                }
                 break;
             case BunnyDirectives.Hump:
                 break;
@@ -137,7 +165,6 @@ public class BunnyController : GameEntity
 
     private void OnTriggerEnter(Collider other)
     {
-        
         if (other.CompareTag("Objective"))
         {
             if (currentDirective == BunnyDirectives.Chew && other.GetComponent<ObjectiveEntity>() == targetObjective)
@@ -179,6 +206,8 @@ public class BunnyController : GameEntity
         currentAction = new GameAction(gameSettings.humpingTime);
         currentAction.onActionEnded.AddListener(EndHumpState);
         currentAction.StartAction();
+
+        currentDirectiveText.text = "Humping!";
     }
 
     void EndHumpState(GameAction gameAction)
@@ -211,5 +240,21 @@ public class BunnyController : GameEntity
         RecalculateDirective();
         actionLoadingImage.fillAmount = 0;
       
+    }
+
+    void EnterDigState()
+    {
+        navMeshAgent.isStopped = true;
+        onWayToDig = false;
+        currentAction = new GameAction(gameSettings.digTime);
+        currentAction.onActionEnded.AddListener(EndDigState);
+        currentAction.StartAction();
+    }
+
+    void EndDigState(GameAction gameAction)
+    {
+        gameManager.SpawnSpawnPoint(transform.position);
+        actionLoadingImage.fillAmount = 0;
+        RecalculateDirective();
     }
 }

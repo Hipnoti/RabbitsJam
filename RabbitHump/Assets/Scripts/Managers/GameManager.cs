@@ -12,14 +12,14 @@ public class GameManager : MonoBehaviour
     public GeneralGameSettings generalGameSettings;
     public GameObject playerPrefab;
     public BunnyController bunnyPrefab;
+    public SpawnPoint spawnPointPrefab;
 
     public Transform bunnySpawnPoint1;
     public Transform bunnySpawnPoint2;
-
+    public Transform centerPoint;
+    
     public List<ObjectiveEntity> defenseObjectives;
     
-    
-
     public ObjectiveEntity GetRandomObjectiveEntity()
     {
         return defenseObjectives[UnityEngine.Random.Range(0, defenseObjectives.Count)];
@@ -31,6 +31,12 @@ public class GameManager : MonoBehaviour
         PhotonNetwork.Destroy(targetObjective.gameObject);
         
     }
+
+    public void SpawnSpawnPoint(Vector3 point)
+    {
+        PhotonNetwork.Instantiate("Prefabs/" + spawnPointPrefab.name, point, quaternion.identity);
+    }
+    
     private void Start()
     {
         PhotonNetwork.Instantiate("Prefabs/" + playerPrefab.name, Vector3.zero, quaternion.identity,

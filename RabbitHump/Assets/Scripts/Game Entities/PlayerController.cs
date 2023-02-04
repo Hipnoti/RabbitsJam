@@ -22,7 +22,15 @@ public class PlayerController : GameEntity, IPunInstantiateMagicCallback
     {
         playerNumber = (Players)info.photonView.InstantiationData[0];
     }
-    
+
+    private void Start()
+    {
+        if (gameManager == null)
+        {
+            gameManager = FindObjectOfType<GameManager>();
+        }
+    }
+
     void Update()
     {
         if (photonView.IsMine && GameHelper.acceptInput)
@@ -33,6 +41,10 @@ public class PlayerController : GameEntity, IPunInstantiateMagicCallback
             moveVector += Input.GetKey(inputSettings.leftKey) ? leftVector : zeroVector;
             moveVector += Input.GetKey(inputSettings.rightKey) ? rightVector : zeroVector;
             transform.Translate(moveVector * (Time.deltaTime * gameSettings.basePlayerSpeed));
+
+            Vector3 v = transform.position - gameManager.centerPoint.position;
+            v = Vector3.ClampMagnitude(v, 4.5f);
+            transform.position = gameManager.centerPoint.position + v;
         }
     }
 
