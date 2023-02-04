@@ -19,6 +19,13 @@ public enum BunnyDirectives
 
 public class BunnyController : GameEntity
 {
+    private const string ANIMATOR_STATE_PARAMETER_NAME = "Current State";
+    private const int WALK_ANIM = 1;
+    private const int DIG_ANIM = 2;
+    private const int CHEW_ANIM = 3;
+    private const int FLY_ANIM = 4;
+    private const int HUMP_ANIM = 5;
+    
     public bool CanHump
     {
         get { return humpCooldown <= 0; }
@@ -49,6 +56,7 @@ public class BunnyController : GameEntity
 
     public void Shove()
     {
+        navMeshAgent.enabled = true;
         navMeshAgent.isStopped = false;
         currentAction = null;
      
@@ -102,6 +110,7 @@ public class BunnyController : GameEntity
         {
             if (Vector3.Distance(targetDigPosition, transform.position) <= 0.05f)
             {
+                
                 EnterDigState();
                 
                 Debug.Log(("Digging"));
@@ -127,6 +136,7 @@ public class BunnyController : GameEntity
         currentDirectiveText.text = currentDirective.ToString();
         navMeshAgent.isStopped = false;
         diggingParticle.Stop();
+        entityAnimator.SetInteger(ANIMATOR_STATE_PARAMETER_NAME, WALK_ANIM);
         switch (currentDirective)
         {
             case BunnyDirectives.Chew:
@@ -207,16 +217,21 @@ public class BunnyController : GameEntity
     {
         humping = true;
         goingToHump = false;
-
+        navMeshAgent.enabled = false;
         currentAction = new GameAction(gameSettings.humpingTime);
         currentAction.onActionEnded.AddListener(EndHumpState);
         currentAction.StartAction();
 
+        if(humpingRole == HumpingRole.Active)
+            entityAnimator.SetInteger(ANIMATOR_STATE_PARAMETER_NAME, HUMP_ANIM);
+        else
+            entityAnimator.SetInteger(ANIMATOR_STATE_PARAMETER_NAME, WALK_ANIM);
         currentDirectiveText.text = "Humping!";
     }
 
     void EndHumpState(GameAction gameAction)
     {
+        navMeshAgent.enabled = true;
         actionLoadingImage.fillAmount = 0;
         humpCooldown = gameManager.generalGameSettings.timeBetweenHumps;
         humping = false;
@@ -237,6 +252,7 @@ public class BunnyController : GameEntity
         currentAction = new GameAction(3f);
         currentAction.onActionEnded.AddListener(EndChewState);
         currentAction.StartAction();
+        entityAnimator.SetInteger(ANIMATOR_STATE_PARAMETER_NAME, CHEW_ANIM);
     }
 
     void EndChewState(GameAction gameAction)
@@ -249,12 +265,15 @@ public class BunnyController : GameEntity
 
     void EnterDigState()
     {
+        if(!onWayToDig)
+            return;;
         navMeshAgent.isStopped = true;
         onWayToDig = false;
         diggingParticle.Play();
         currentAction = new GameAction(gameSettings.digTime);
         currentAction.onActionEnded.AddListener(EndDigState);
-        currentAction.StartAction();
+        currentAction.StartAction(); 
+        entityAnimator.SetInteger(ANIMATOR_STATE_PARAMETER_NAME, DIG_ANIM);
     }
 
     void EndDigState(GameAction gameAction)
@@ -263,5 +282,6 @@ public class BunnyController : GameEntity
         diggingParticle.Stop();
         actionLoadingImage.fillAmount = 0;
         RecalculateDirective();
+      
     }
 }
