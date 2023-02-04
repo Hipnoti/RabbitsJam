@@ -13,8 +13,6 @@ public class PlayerController : GameEntity, IPunInstantiateMagicCallback
     private const int WALK_ANIM = 2;
     private const int FIX_ANIM = 3;
     private const int HOLD_ANIM = 4;
-
-    
     
     private readonly Vector3 upVector = Vector3.forward;
     private readonly Vector3 downVector = Vector3.back;

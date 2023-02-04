@@ -27,4 +27,6 @@ public abstract class PhotonManager : MonoBehaviourPunCallbacks
             base.OnConnectedToMaster();
             Debug.Log("Connected");
       }
+      
+      
 }

@@ -7,7 +7,7 @@ using Unity.Mathematics;
 using UnityEngine;
 using Random = Unity.Mathematics.Random;
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviourPun
 {
     public GeneralGameSettings generalGameSettings;
     public GameObject playerPrefab;
@@ -56,11 +56,18 @@ public class GameManager : MonoBehaviour
         }
         return closestBunny;
     }
-    
-    private void Start()
+
+    [PunRPC]
+    public void InstantiatePlayer()
     {
         PhotonNetwork.Instantiate("Prefabs/" + playerPrefab.name, Vector3.zero, quaternion.identity,
             0, new object[]{PhotonNetwork.IsMasterClient ? Players.Player1 : Players.Player2});
+    }
+    
+    private void Start()
+    {
+        // PhotonNetwork.Instantiate("Prefabs/" + playerPrefab.name, Vector3.zero, quaternion.identity,
+        //     0, new object[]{PhotonNetwork.IsMasterClient ? Players.Player1 : Players.Player2});
         // if (PhotonNetwork.IsMasterClient)
         // {
         //     PhotonNetwork.Instantiate("Prefabs/" + bunnyPrefab.name,
