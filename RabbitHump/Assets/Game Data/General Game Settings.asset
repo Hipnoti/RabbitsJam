@@ -13,13 +13,14 @@ MonoBehaviour:
   m_Name: General Game Settings
   m_EditorClassIdentifier: 
   basePlayerSpeed: 10
+  useDistance: 2
   distanceToHump: 1.25
   humpingTime: 5
   timeBetweenHumps: 6
   bunnyActionChances:
   - directive: 1
-    chance: 0
+    chance: 0.5
   - directive: 2
-    chance: 1
+    chance: 0.5
   digTime: 4
   spawnTime: 3

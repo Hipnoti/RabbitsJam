@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [CreateAssetMenu(menuName = "Yellow Rhymes/General Game Settings", 
     fileName = "General Game Settings")]
@@ -8,6 +9,7 @@ public class GeneralGameSettings : ScriptableObject
 {
     [Header("Player")]
     public float basePlayerSpeed;
+    [FormerlySerializedAs("pickupDistance")] public float useDistance;
     
     [Header("Bunnies")]
     public float distanceToHump;

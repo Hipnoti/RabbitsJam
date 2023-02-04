@@ -13,7 +13,8 @@ public class GameManager : MonoBehaviour
     public GameObject playerPrefab;
     public BunnyController bunnyPrefab;
     public SpawnPoint spawnPointPrefab;
-
+    public CannonEntity cannon;
+    
     public Transform bunnySpawnPoint1;
     public Transform bunnySpawnPoint2;
     public Transform centerPoint;
@@ -43,10 +44,16 @@ public class GameManager : MonoBehaviour
     {
         BunnyController closestBunny = null;
 
-        // for (int i = 0; i < ; i++)
-        // {
-        //     
-        // }
+        float bestDistance = 9999;
+        for (int i = 0; i < bunniesInGame.Count ; i++)
+        {
+            float currentDistance = Vector3.Distance(fromPosition, bunniesInGame[i].transform.position);
+            if (currentDistance <= maxDistance && currentDistance < bestDistance)
+            {
+                bestDistance = currentDistance;
+                closestBunny = bunniesInGame[i];
+            }
+        }
         return closestBunny;
     }
     

@@ -259,6 +259,7 @@ MonoBehaviour:
   gameManager: {fileID: 0}
   playerNumber: 0
   carriedBunny: {fileID: 0}
+  bunnyInRange: {fileID: 0}
   inputSettings: {fileID: 11400000, guid: 444930ba16c912f45934c6d8ace79621, type: 2}
   gameSettings: {fileID: 11400000, guid: c9c01f2c6ae071340b02a9d08570cfa3, type: 2}
 --- !u!114 &5788762480515754892

@@ -47,12 +47,27 @@ public class PlayerController : GameEntity, IPunInstantiateMagicCallback
             Vector3 v = transform.position - gameManager.centerPoint.position;
             v = Vector3.ClampMagnitude(v, 4.5f);
             transform.position = gameManager.centerPoint.position + v;
-
+            
             if (Input.GetKeyDown(inputSettings.useKey))
             {
-                if (bunnyInRange != null)
+                bunnyInRange = gameManager.GetClosestBunny(transform.position, gameSettings.useDistance);
+                if (bunnyInRange != null && carriedBunny == null)
                 {
-                    
+                    carriedBunny = bunnyInRange;
+                    carriedBunny.gameObject.SetActive(false);
+                }
+            }
+
+            if (carriedBunny != null)
+            {
+                if (Vector3.Distance(transform.position, gameManager.cannon.transform.position) <=
+                    gameSettings.useDistance)
+                {
+                    if (Input.GetKeyDown(inputSettings.useKey))
+                    {
+                        carriedBunny = null;
+                        gameManager.cannon.LaunchBunny();
+                    }
                 }
             }
         }
@@ -64,6 +79,9 @@ public class PlayerController : GameEntity, IPunInstantiateMagicCallback
         {
             Debug.Log(("Stop it bunny!"));
             BunnyController bunnyController = other.GetComponentInParent<BunnyController>();
+            if(bunnyController == null)
+                return;
+            
             if(bunnyController.humping)
                 bunnyController.targetBunny.Shove();
             bunnyController.Shove();

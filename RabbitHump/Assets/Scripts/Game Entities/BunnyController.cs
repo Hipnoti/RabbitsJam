@@ -33,6 +33,9 @@ public class BunnyController : GameEntity
     public ObjectiveEntity targetObjective;
     public Vector3 targetDigPosition;
     public BunnyDirectives currentDirective;
+    public ParticleSystem diggingParticle;
+    
+    public GameObject canvasObject;
 
     [HideInInspector] public bool goingToHump = false;
     [HideInInspector] public bool humping = false;
@@ -42,7 +45,6 @@ public class BunnyController : GameEntity
 
     private GameAction currentAction;
     private float humpCooldown = 2f;
-
     
 
     public void Shove()
@@ -67,7 +69,9 @@ public class BunnyController : GameEntity
         {
             gameManager = FindObjectOfType<GameManager>();
         }
-
+        
+        
+        gameManager.bunniesInGame.Add(this);
         navMeshAgent.updateRotation = false;
         actionLoadingImage.fillAmount = 0;
         RecalculateDirective();
@@ -122,6 +126,7 @@ public class BunnyController : GameEntity
         currentDirective = chosenActionChance.directive;
         currentDirectiveText.text = currentDirective.ToString();
         navMeshAgent.isStopped = false;
+        diggingParticle.Stop();
         switch (currentDirective)
         {
             case BunnyDirectives.Chew:
@@ -246,6 +251,7 @@ public class BunnyController : GameEntity
     {
         navMeshAgent.isStopped = true;
         onWayToDig = false;
+        diggingParticle.Play();
         currentAction = new GameAction(gameSettings.digTime);
         currentAction.onActionEnded.AddListener(EndDigState);
         currentAction.StartAction();
@@ -254,6 +260,7 @@ public class BunnyController : GameEntity
     void EndDigState(GameAction gameAction)
     {
         gameManager.SpawnSpawnPoint(transform.position);
+        diggingParticle.Stop();
         actionLoadingImage.fillAmount = 0;
         RecalculateDirective();
     }
