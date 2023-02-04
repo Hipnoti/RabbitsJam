@@ -9,7 +9,13 @@ using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 
-public enum BunnyDirectives { Chew, Dig, Hump}
+public enum BunnyDirectives
+{
+    Chew,
+    Dig,
+    Hump
+}
+
 public class BunnyController : GameEntity
 {
     public bool CanHump
@@ -17,7 +23,7 @@ public class BunnyController : GameEntity
         get { return humpCooldown <= 0; }
     }
 
-    public GameManager gameManager;
+  
     public GeneralGameSettings gameSettings;
     public NavMeshAgent navMeshAgent;
     public Image actionLoadingImage;
@@ -25,31 +31,38 @@ public class BunnyController : GameEntity
     public BunnyController targetBunny = null;
     public ObjectiveEntity targetObjective;
     public BunnyDirectives currentDirective;
-    
+
     [HideInInspector] public bool goingToHump = false;
     [HideInInspector] public bool humping = false;
-    
-     private HumpingRole humpingRole = HumpingRole.None;
 
-     private GameAction currentAction;
-    private float humpCooldown = 2;
+    private HumpingRole humpingRole = HumpingRole.None;
+
+    private GameAction currentAction;
+    private float humpCooldown = 2f;
 
     public void Shove()
     {
+        navMeshAgent.isStopped = false;
+        currentAction = null;
+     
         actionLoadingImage.fillAmount = 0;
-        humpCooldown = gameManager.generalGameSettings.timeBetweenHumps;
+        if (humping)
+        {
+            humpCooldown = gameManager.generalGameSettings.timeBetweenHumps;
+        }
         humping = false;
         targetBunny = null;
         humpingRole = HumpingRole.None;
-        
+         RecalculateDirective();
     }
-    
+
     private void Start()
     {
         if (gameManager == null)
         {
             gameManager = FindObjectOfType<GameManager>();
         }
+
         navMeshAgent.updateRotation = false;
         actionLoadingImage.fillAmount = 0;
         RecalculateDirective();
@@ -63,16 +76,22 @@ public class BunnyController : GameEntity
             if (Vector3.Distance(targetBunny.transform.position, transform.position) <= gameSettings.distanceToHump)
             {
                 navMeshAgent.isStopped = true;
-              //  navMeshAgent.enabled = false;
+                //  navMeshAgent.enabled = false;
                 EnterHumpState();
-              
             }
         }
 
+        if (currentDirective == BunnyDirectives.Chew)
+        {
+            if (targetObjective == null)
+            {
+                RecalculateDirective();
+            }
+        }
         if (currentAction != null && currentAction.ActionStarted)
         {
             currentAction.timeLeftForAction -= Time.deltaTime;
-            if(humpingRole == HumpingRole.Active)
+          //  if (humping && humpingRole == HumpingRole.Active)
                 actionLoadingImage.fillAmount = currentAction.PercentComplete;
             if (currentAction.timeLeftForAction <= 0)
             {
@@ -86,11 +105,25 @@ public class BunnyController : GameEntity
         BunnyActionChance chosenActionChance = GameHelper.Choose(gameSettings.bunnyActionChances);
         currentDirective = chosenActionChance.directive;
         currentDirectiveText.text = currentDirective.ToString();
-
+        navMeshAgent.isStopped = false;
         switch (currentDirective)
         {
             case BunnyDirectives.Chew:
-                targetObjective = gameManager.GetRandomObjectiveEntity();
+                if(gameManager.defenseObjectives.Count == 0)
+                    return;;
+                if (gameManager.defenseObjectives.Count > 1)
+                {
+                    ObjectiveEntity newTargetObjective;
+                    do
+                    {
+                        newTargetObjective = gameManager.GetRandomObjectiveEntity();
+                    } while (newTargetObjective == targetObjective);
+
+                    targetObjective = newTargetObjective;
+                }
+                else
+                 targetObjective = gameManager.GetRandomObjectiveEntity();
+                
                 navMeshAgent.SetDestination(targetObjective.transform.position);
                 break;
             case BunnyDirectives.Dig:
@@ -104,13 +137,23 @@ public class BunnyController : GameEntity
 
     private void OnTriggerEnter(Collider other)
     {
-        if((goingToHump || humping) || !CanHump)
-            return;
         
+        if (other.CompareTag("Objective"))
+        {
+            if (currentDirective == BunnyDirectives.Chew && other.GetComponent<ObjectiveEntity>() == targetObjective)
+            {
+                Debug.Log("Reached Target");
+               EnterChewState();
+            }
+        }
+        
+        if ((goingToHump || humping) || !CanHump)
+            return;
+
         if (other.CompareTag("Bunny"))
         {
             targetBunny = other.GetComponent<BunnyController>();
-            if(targetBunny.targetBunny != this || !targetBunny.CanHump)
+            if (targetBunny.targetBunny != this || !targetBunny.CanHump)
                 return;
 
             if (humpingRole == HumpingRole.None)
@@ -118,19 +161,21 @@ public class BunnyController : GameEntity
                 humpingRole = Random.value >= 0.5f ? HumpingRole.Active : HumpingRole.Passive;
                 targetBunny.humpingRole = humpingRole == HumpingRole.Active ? HumpingRole.Passive : HumpingRole.Active;
             }
-            
+
             Vector3 targetPosition = (transform.position + other.transform.position) / 2;
             navMeshAgent.SetDestination(targetPosition);
             goingToHump = true;
-            
         }
+
+
+       
     }
 
     void EnterHumpState()
     {
         humping = true;
         goingToHump = false;
-        
+
         currentAction = new GameAction(gameSettings.humpingTime);
         currentAction.onActionEnded.AddListener(EndHumpState);
         currentAction.StartAction();
@@ -148,7 +193,23 @@ public class BunnyController : GameEntity
         }
 
         humpingRole = HumpingRole.None;
-     
+        currentAction = null;
         navMeshAgent.Move(Vector3.forward * 0.05f);
+    }
+
+    void EnterChewState()
+    {
+        navMeshAgent.isStopped = true;
+        currentAction = new GameAction(3f);
+        currentAction.onActionEnded.AddListener(EndChewState);
+        currentAction.StartAction();
+    }
+
+    void EndChewState(GameAction gameAction)
+    {
+        gameManager.DestroyObjectiveEntity(targetObjective);
+        RecalculateDirective();
+        actionLoadingImage.fillAmount = 0;
+      
     }
 }

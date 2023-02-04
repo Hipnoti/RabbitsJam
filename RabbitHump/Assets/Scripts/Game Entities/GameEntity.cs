@@ -7,7 +7,8 @@ using UnityEngine;
 public class GameEntity : MonoBehaviourPun
 {
     public Animator entityAnimator;
-
+    public GameManager gameManager;
+    
     private void OnValidate()
     {
         if (entityAnimator == null)

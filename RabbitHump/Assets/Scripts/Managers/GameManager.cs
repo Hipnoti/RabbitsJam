@@ -17,22 +17,31 @@ public class GameManager : MonoBehaviour
     public Transform bunnySpawnPoint2;
 
     public List<ObjectiveEntity> defenseObjectives;
+    
+    
 
     public ObjectiveEntity GetRandomObjectiveEntity()
     {
         return defenseObjectives[UnityEngine.Random.Range(0, defenseObjectives.Count)];
     }
+
+    public void DestroyObjectiveEntity(ObjectiveEntity targetObjective)
+    {
+        defenseObjectives.Remove(targetObjective);
+        PhotonNetwork.Destroy(targetObjective.gameObject);
+        
+    }
     private void Start()
     {
         PhotonNetwork.Instantiate("Prefabs/" + playerPrefab.name, Vector3.zero, quaternion.identity,
             0, new object[]{PhotonNetwork.IsMasterClient ? Players.Player1 : Players.Player2});
-        if (PhotonNetwork.IsMasterClient)
-        {
-            PhotonNetwork.Instantiate("Prefabs/" + bunnyPrefab.name,
-                bunnySpawnPoint1.position, quaternion.identity);
-            PhotonNetwork.Instantiate("Prefabs/" + bunnyPrefab.name, 
-                bunnySpawnPoint2.position, quaternion.identity);
-        }
+        // if (PhotonNetwork.IsMasterClient)
+        // {
+        //     PhotonNetwork.Instantiate("Prefabs/" + bunnyPrefab.name,
+        //         bunnySpawnPoint1.position, quaternion.identity);
+        //     PhotonNetwork.Instantiate("Prefabs/" + bunnyPrefab.name, 
+        //         bunnySpawnPoint2.position, quaternion.identity);
+        // }
     }
 
     private void OnValidate()

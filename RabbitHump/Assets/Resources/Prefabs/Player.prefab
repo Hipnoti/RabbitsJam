@@ -197,6 +197,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   entityAnimator: {fileID: 4563759431011478472}
+  gameManager: {fileID: 0}
   playerNumber: 0
   inputSettings: {fileID: 11400000, guid: 444930ba16c912f45934c6d8ace79621, type: 2}
   gameSettings: {fileID: 11400000, guid: c9c01f2c6ae071340b02a9d08570cfa3, type: 2}
@@ -230,8 +231,8 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 1.3
-  m_Height: 1.89
+  m_Radius: 0.8693728
+  m_Height: 2.6
   m_Direction: 1
   m_Center: {x: 0, y: 0.88, z: 0}
 --- !u!54 &6642077197256010769

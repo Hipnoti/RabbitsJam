@@ -47,6 +47,8 @@ public class PlayerController : GameEntity, IPunInstantiateMagicCallback
             bunnyController.Shove();
       
         }
+
+       
     }
 
     

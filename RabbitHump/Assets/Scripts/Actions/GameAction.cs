@@ -14,7 +14,7 @@ public class GameAction
     public float PercentComplete => (totalTimeForAction - timeLeftForAction) / totalTimeForAction;
 
     public float timeLeftForAction;
-    private float totalTimeForAction;
+    public float totalTimeForAction;
     
     private bool actionStarted = false;
   
