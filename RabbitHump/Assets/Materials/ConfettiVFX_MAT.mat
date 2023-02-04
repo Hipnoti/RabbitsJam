@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: New Material
+  m_Name: ConfettiVFX_MAT
   m_Shader: {fileID: 4800000, guid: 0406db5a14f94604a8c57ccfbc9f3b46, type: 3}
   m_ValidKeywords:
   - _ALPHATEST_ON
@@ -27,7 +27,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: 6216087a132eaac44bc92cbda8b5f977, type: 3}
+        m_Texture: {fileID: 2800000, guid: 0f38317e5256e2d41959c11652d30793, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
