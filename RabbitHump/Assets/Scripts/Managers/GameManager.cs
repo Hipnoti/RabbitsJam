@@ -24,7 +24,8 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
-        PhotonNetwork.Instantiate("Prefabs/" + playerPrefab.name, Vector3.zero, quaternion.identity);
+        PhotonNetwork.Instantiate("Prefabs/" + playerPrefab.name, Vector3.zero, quaternion.identity,
+            0, new object[]{PhotonNetwork.IsMasterClient ? Players.Player1 : Players.Player2});
         if (PhotonNetwork.IsMasterClient)
         {
             PhotonNetwork.Instantiate("Prefabs/" + bunnyPrefab.name,
