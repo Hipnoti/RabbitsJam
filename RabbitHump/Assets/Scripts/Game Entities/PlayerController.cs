@@ -19,6 +19,8 @@ public class PlayerController : GameEntity, IPunInstantiateMagicCallback
     private readonly Vector3 leftVector = Vector3.left;
     private readonly Vector3 rightVector = Vector3.right;
     private readonly Vector3 zeroVector = Vector3.zero;
+
+    public AnimatorOverrideController bluePlayerAnimatorController;
     
     public Players playerNumber;
     public BunnyController carriedBunny;
@@ -38,6 +40,9 @@ public class PlayerController : GameEntity, IPunInstantiateMagicCallback
         {
             gameManager = FindObjectOfType<GameManager>();
         }
+
+        if (playerNumber == Players.Player2)
+            entityAnimator.runtimeAnimatorController = bluePlayerAnimatorController;
     }
 
     void Update()
@@ -116,7 +121,7 @@ public class PlayerController : GameEntity, IPunInstantiateMagicCallback
                 return;
             
             if(bunnyController.humping)
-                bunnyController.targetBunny.Shove();
+                bunnyController.targetBunny.Shove(false);
             bunnyController.Shove();
       
         }

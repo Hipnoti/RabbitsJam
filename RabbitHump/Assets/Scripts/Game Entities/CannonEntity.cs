@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class CannonEntity : GameEntity
 {
-  
-    
     public ParticleSystem conffetiParticle;
     public BunnyController bunnyPrefab;
     public Transform bunnySpawnPoint;
@@ -18,9 +16,11 @@ public class CannonEntity : GameEntity
         instadBunny.navMeshAgent.enabled = false;
         instadBunny.enabled = false;
         instadBunny.canvasObject.SetActive(false);
+        instadBunny.bornAudio.mute = true;
+        instadBunny.shootAudio.Play();
         Destroy(instadBunny);
         instadBunny.tag = "Untagged";
-
+        
         Rigidbody rb = instadBunny.GetComponent<Rigidbody>();
         rb.isKinematic = false;        
         rb.AddForce(bunnySpawnPoint.forward * 1500f);

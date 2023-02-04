@@ -44,6 +44,13 @@ public class BunnyController : GameEntity
     
     public GameObject canvasObject;
 
+    [Header("Audio")]
+    public AudioSource bornAudio;
+    public AudioSource slapAudio;
+    public AudioSource shootAudio;
+    public AudioSource digAudio;
+    public AudioSource humpAudio;
+    
     [HideInInspector] public bool goingToHump = false;
     [HideInInspector] public bool humping = false;
     [HideInInspector] public bool onWayToDig = false;
@@ -54,7 +61,7 @@ public class BunnyController : GameEntity
     private float humpCooldown = 2f;
     
 
-    public void Shove()
+    public void Shove(bool withAudio = true)
     {
         navMeshAgent.enabled = true;
         navMeshAgent.isStopped = false;
@@ -70,6 +77,9 @@ public class BunnyController : GameEntity
         targetBunny = null;
         humpingRole = HumpingRole.None;
          RecalculateDirective();
+         
+         // if(withAudio)
+         //  slapAudio.Play();
     }
 
     private void Start()
@@ -132,9 +142,11 @@ public class BunnyController : GameEntity
 
     private void RecalculateDirective()
     {
+        digAudio.Stop();
         BunnyActionChance chosenActionChance = GameHelper.Choose(gameSettings.bunnyActionChances);
         currentDirective = chosenActionChance.directive;
         currentDirectiveText.text = currentDirective.ToString();
+        navMeshAgent.enabled = true;
         navMeshAgent.isStopped = false;
         diggingParticle.Stop();
         entityAnimator.SetInteger(ANIMATOR_STATE_PARAMETER_NAME, WALK_ANIM);
@@ -229,6 +241,8 @@ public class BunnyController : GameEntity
         else
             entityAnimator.SetInteger(ANIMATOR_STATE_PARAMETER_NAME, WALK_ANIM);
         currentDirectiveText.text = "Humping!";
+        
+        humpAudio.Play();
     }
 
     void EndHumpState(GameAction gameAction)
@@ -276,6 +290,7 @@ public class BunnyController : GameEntity
         currentAction.onActionEnded.AddListener(EndDigState);
         currentAction.StartAction(); 
         entityAnimator.SetInteger(ANIMATOR_STATE_PARAMETER_NAME, DIG_ANIM);
+        digAudio.Play();
     }
 
     void EndDigState(GameAction gameAction)
@@ -284,6 +299,6 @@ public class BunnyController : GameEntity
         diggingParticle.Stop();
         actionLoadingImage.fillAmount = 0;
         RecalculateDirective();
-      
+        digAudio.Stop();
     }
 }
