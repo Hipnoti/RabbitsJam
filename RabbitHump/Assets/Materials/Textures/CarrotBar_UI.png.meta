@@ -131,8 +131,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 10bbba209076e8149966823d96977e16
-      internalID: -140817504
+      spriteID: a9ffb32e5d419274881401e94459787e
+      internalID: 1137371123
       vertices: []
       indices: 
       edges: []
@@ -142,9 +142,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 256
+        y: 210
         width: 512
-        height: 99
+        height: 92
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -152,8 +152,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0ab7c897b801d6b4f936353160e31b77
-      internalID: 441251318
+      spriteID: 233474f2300d3944d8add6c8451dad92
+      internalID: 649223116
       vertices: []
       indices: 
       edges: []
@@ -173,8 +173,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7f52058126701e542bffb2ed35f117ed
-      internalID: 900351720
+      spriteID: f989037fbe3c5ab4fb2b1e778001fb9b
+      internalID: 1546399731
       vertices: []
       indices: 
       edges: []
@@ -182,7 +182,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
+    spriteID: c7181f3f3c50b434491ba51ca810dcef
     internalID: 0
     vertices: []
     indices: 
@@ -190,9 +190,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      CarrotBar_UI_0: -140817504
-      CarrotBar_UI_2: 900351720
-      CarrotBar_UI_1: 441251318
+      CarrotBar_UI_0: 1137371123
+      CarrotBar_UI_2: 1546399731
+      CarrotBar_UI_1: 649223116
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
